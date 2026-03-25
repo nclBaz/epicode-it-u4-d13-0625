@@ -2,6 +2,7 @@ package riccardogulin.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -24,6 +25,10 @@ public class User {
 	// N.B. Non verrà creata una nuova colonna nella tabella users!!!!!
 	private Document document;
 
+	// 1 TO MANY BIDIREZIONALE
+	@OneToMany(mappedBy = "author")
+	private List<Blog> blogs;
+
 	protected User() {
 	}
 
@@ -38,6 +43,10 @@ public class User {
 
 	public UUID getUserId() {
 		return userId;
+	}
+
+	public List<Blog> getBlogs() {
+		return blogs;
 	}
 
 	public String getName() {
